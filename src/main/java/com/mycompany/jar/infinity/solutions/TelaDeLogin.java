@@ -52,7 +52,6 @@ public class TelaDeLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Monitoring_Solution__500___250_px_-removebg-preview_resized.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel2.setText("Infinity Solutions");
@@ -79,10 +78,8 @@ public class TelaDeLogin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         jLabel4.setText("Senha");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/olho.png"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Leelawadee UI", 1, 8)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/copyright-symbol.png"))); // NOI18N
         jLabel7.setText("Copyrigth Infinity Solutions");
 
         btnEntrar.setFont(new java.awt.Font("Leelawadee UI", 0, 18)); // NOI18N
