@@ -34,6 +34,7 @@ public class TelaDeLogin extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         txtLoginUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -55,6 +56,8 @@ public class TelaDeLogin extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel9.setText("Infinity Monitor");
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -262,6 +265,7 @@ public class TelaDeLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblInfinityMonitor;
