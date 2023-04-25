@@ -11,25 +11,25 @@ public class VerificacaoCredenciais {
         
         Boolean verficacaoFinal = false;
 
-        Empresa user = con.queryForObject("IF NOT EXISTS (select idEmpresa from Empresa where cnpj = ?)"
+        Empresa user = con.queryForObject("IF NOT EXISTS (select idEmpresa from Empresa where idEmpresa = ?)"
                 + " BEGIN"
                 + " SELECT -9 AS mensagem"
                 + " END"
                 + " ELSE"
                 + " BEGIN"
-                + "  select idEmpresa from Empresa where cnpj = ? "
+                + "  select idEmpresa from Empresa where idEmpresa = ? "
                 + "END ", new BeanPropertyRowMapper<>(Empresa.class), login, login);
         
         System.out.println(user.getIdEmpresa());
         
         if(user.getIdEmpresa() != 0){
-            Funcionario senhaUser = con.queryForObject("IF NOT EXISTS (select senha from Funcionario where fkEmpresa = ?)"
+            Funcionario senhaUser = con.queryForObject("IF NOT EXISTS (select senha from Funcionário where fkEmpresa = ?)"
                 + " BEGIN"
                 + "  SELECT 'Erro' AS mensagem"
                 + " END"
                 + " ELSE"
                 + " BEGIN"
-                + "  select senha from [dbo].[Funcionario] where fkEmpresa = ? "
+                + "  select senha from [dbo].[Funcionário] where fkEmpresa = ? "
                 + "END ", new BeanPropertyRowMapper<>(Funcionario.class), user.getIdEmpresa(), user.getIdEmpresa());
             
 
