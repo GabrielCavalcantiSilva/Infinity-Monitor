@@ -66,6 +66,7 @@ public class Sistema {
     return this.os.getSystemUptime();
   }
 
+
   /**
    * Retorna <b><code>True</code></b> caso o processo atual tem <b>permissões elevadas</b>, como <i>sudo/Administrador</i>.
    *
