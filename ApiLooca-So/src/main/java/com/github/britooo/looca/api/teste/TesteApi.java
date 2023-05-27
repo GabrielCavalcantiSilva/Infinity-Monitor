@@ -91,7 +91,7 @@ public class TesteApi {
 //                      Executar Reiniciacao
                         try {
                             // Comando que você deseja executar
-                            String comando = "bash";
+                            String comando = "sudo reboot";
 
                             // Cria o ProcessBuilder com o comando
                             ProcessBuilder pb = new ProcessBuilder("bash", "-c", comando);
@@ -133,7 +133,7 @@ public class TesteApi {
 //                      Executar Reiniciacao
                         try {
                             // Comando que você deseja executar
-                            String comando = "bash";
+                            String comando = "sudo reboot";
 
                             // Cria o ProcessBuilder com o comando
                             ProcessBuilder pb = new ProcessBuilder("bash", "-c", comando);
