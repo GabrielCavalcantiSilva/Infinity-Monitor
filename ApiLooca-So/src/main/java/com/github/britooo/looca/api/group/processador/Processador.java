@@ -149,19 +149,23 @@ public class Processador {
     return this.processadorCacheLoader.getUso();
   }
   
+  public String converter(){
+      return String.format("%.2f", getUso());
+  }
+  
   public void avisoCpu(String idTotem, String login){
       Double valorAtencao = ver.limiteAtencaoCpu(idTotem, login);
       Double valorCritico = ver.limiteCriticoCpu(idTotem, login);
       if(this.processadorCacheLoader.getUso() > valorCritico){
           slack.enviaMensagemSlack(
     "O uso da cpu do totem " + idTotem + " ultrapassou o ponto de crítico definido.\n" +
-    "A cpu atual é de " + getUso() +
+    "A cpu atual é de " + converter() + " se o uso continuar em crítico por 2 minutos o totem irá reiniciar automaticamente." +
     "%\nAtenciosamente, Infinity Solutions");
       }
       else if(this.processadorCacheLoader.getUso() > valorAtencao){
           slack.enviaMensagemSlack(
     "O uso da cpu do totem " + idTotem + " ultrapassou o ponto de atenção definido.\n" +
-    "A cpu atual é de " + getUso() +
+    "A cpu atual é de " + converter() +
     "%\nAtenciosamente, Infinity Solutions");
       }
   }

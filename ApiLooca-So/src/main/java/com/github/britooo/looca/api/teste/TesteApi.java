@@ -37,7 +37,7 @@ public class TesteApi {
         Conexao conexao = new Conexao();
         ConexaoMysql conexao2 = new ConexaoMysql();
         JdbcTemplate con = conexao.getConexaoDoBanco();
-//        JdbcTemplate con2 = conexao2.getConexaoDoBanco();
+        JdbcTemplate con2 = conexao2.getConexaoDoBanco();
         
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -54,7 +54,7 @@ public class TesteApi {
 
                 // Inseri no banco os dados da ApiLooca
                 con.update("insert into MonitoramentoDeRecursos (UsoDeCpu, UsoDeMemoriaRam, vidaUtil, DataHora, fkTotem, fkEmpresa) values (?, ?, ?, GETDATE(), ?,? )", processador.getUso(), memoria.getEmUso(), Conversor.formatarSegundosDecorridos(sistema.getTempoDeAtividade()), numeroDeIdentificacaoDoTotem, login);
-//                con2.update("insert into monitoramentoderecursos (UsoDeCpu, UsoDeMemoriaRam,Temperatura,DataHora) values (?, ?, ?, now())", processador.getUso(), memoria.getEmUso(), temperatura.getTemperatura());
+                con2.update("insert into monitoramentoderecursos (UsoDeCpu, UsoDeMemoriaRam,Temperatura,DataHora) values (?, ?, ?, now())", processador.getUso(), memoria.getEmUso(), temperatura.getTemperatura());;
                 System.out.println("Dados inseridos no banco...");
 
                 // Exibe os dados da maquina no console
@@ -80,7 +80,11 @@ public class TesteApi {
                     
                     @Override
                     public void run() {
-                        System.out.println("REINICIANDO ********");
+                        System.out.println("***** REINICIANDO TOTEM *****");
+                        
+                        SlackIntegration slack = new SlackIntegration();
+                        
+                        slack.enviaMensagemSlack("Seu Totem " +numeroDeIdentificacaoDoTotem+ " foi reiniciado por conta do uso crítico de CPU.");
                         
                         MonitoramentoDeRecurso monitor = new MonitoramentoDeRecurso();
                         
@@ -122,7 +126,11 @@ public class TesteApi {
                     
                     @Override
                     public void run() {
-                        System.out.println("******** REINICIANDO ********");
+                        System.out.println("***** REINICIANDO TOTEM *****");
+                        
+                        SlackIntegration slack = new SlackIntegration();
+                        
+                        slack.enviaMensagemSlack("Seu Totem " +numeroDeIdentificacaoDoTotem+ " foi reiniciado por conta do uso crítico de memória Ram.");
                         
                         MonitoramentoDeRecurso monitor = new MonitoramentoDeRecurso();
                         
@@ -165,20 +173,14 @@ public class TesteApi {
                 // Verificar 
                 if (processador.getUso() < ver.limiteCriticoCpu(numeroDeIdentificacaoDoTotem, login)) {
                     taskProcess.cancel();
-                    System.out.println("Cancelando");
-                    System.out.println(processador.getUso() + "-----------------");
                 } else {
                     timerReinicio.scheduleAtFixedRate(taskProcess, 120000, 120000);
-                    System.out.println(processador.getUso() + "--------------");
                 }
                 
                 if (memoria.getPorcentagemEmUso() < ver.limiteCriticoMemoria(numeroDeIdentificacaoDoTotem, login)) {
                     taskMemor.cancel();
-                    System.out.println("Cancelando");
-                    System.out.println(memoria.getPorcentagemEmUso() + "-----------------");
                 } else {
                     timerReinicio.scheduleAtFixedRate(taskMemor, 120000, 120000);
-                    System.out.println(memoria.getPorcentagemEmUso() + "--------------");
                 }
             }
         },

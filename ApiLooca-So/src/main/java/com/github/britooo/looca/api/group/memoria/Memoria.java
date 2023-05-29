@@ -47,6 +47,9 @@ public Double getPorcentagemEmUso() {
         return (emUso / total) * 100.0;
     }
     
+public String converter(){
+      return String.format("%.2f", getPorcentagemEmUso());
+  }
 
 public void avisoMemoria(String idTotem, String login){
       Double valorAtencao = ver.limiteAtencaoMemoria(idTotem, login);
@@ -54,13 +57,13 @@ public void avisoMemoria(String idTotem, String login){
       if(getPorcentagemEmUso() > valorCritico){
           slack.enviaMensagemSlack(
     "O uso da memória do totem " + idTotem + " ultrapassou o ponto de crítico definido.\n" +
-    "A memória ram atual é de " + getPorcentagemEmUso() +
+    "A memória ram atual é de " + converter() + " se o uso continuar em crítico por 2 minutos o totem irá reiniciar automaticamente." +
     "%\nAtenciosamente, Infinity Solutions");
       }
       else if(getPorcentagemEmUso() > valorAtencao){
           slack.enviaMensagemSlack(
     "O uso da memória do totem " + idTotem + " ultrapassou o ponto de atenção definido.\n" +
-    "A memória ram atual é de " + getPorcentagemEmUso() +
+    "A memória ram atual é de " + converter() +
     "%\nAtenciosamente, Infinity Solutions");
       }
   }
